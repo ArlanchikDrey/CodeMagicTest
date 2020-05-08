@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -46,6 +47,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  static const platform = const MethodChannel("toast.flutter.io/toast");
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -55,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    platform.invokeMethod("showToast");
   }
 
   @override
